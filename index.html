@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Happy Birthday ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;900&display=swap" rel="stylesheet">
+<style>
+body{
+margin:0;
+overflow:hidden;
+background:black;
+font-family:'Poppins',sans-serif;
+color:white;
+text-align:center;
+}
+#bgVideo{
+position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0.7;
+}
+canvas{position:fixed;top:0;left:0;z-index:-1;}
+.container{
+position:relative;
+z-index:2;
+padding-top:80px;
+}
+.title{
+font-size:90px;
+font-weight:900;
+background:linear-gradient(90deg,#ff00cc,#ff4da6,#ffffff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 2s infinite;
+}
+@keyframes glow{
+0%{text-shadow:0 0 10px #ff4da6;}
+50%{text-shadow:0 0 40px #ff00cc;}
+100%{text-shadow:0 0 10px #ff4da6;}
+}
+.subtitle{
+font-size:38px;
+margin-top:20px;
+animation:fadeIn 3s ease;
+}
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+.emoji{
+font-size:100px;
+animation:bounce 2s infinite;
+margin-top:30px;
+}
+@keyframes bounce{
+0%,100%{transform:translateY(0);}50%{transform:translateY(-30px);} }
+.album{
+margin-top:60px;
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+.card{
+width:280px;
+border-radius:25px;
+overflow:hidden;
+background:white;
+color:black;
+box-shadow:0 0 40px rgba(255,0,150,0.7);
+transition:transform 0.5s;
+}
+.card:hover{transform:scale(1.1) rotate(3deg);}
+.card img{width:100%;height:180px;object-fit:cover;}
+.card p{padding:10px;font-weight:600;}
+.heart{
+font-size:220px;
+margin-top:50px;
+animation:pulse 2s infinite;
+}
+@keyframes pulse{
+0%{transform:scale(1);}50%{transform:scale(1.2);}100%{transform:scale(1);} }
+</style>
+</head>
+<body>
+<video id="bgVideo" autoplay muted loop>
+<source src="https://www.videvo.net/videvo_files/converted/2016_06/preview/160601_02_Birthday.mp4680.mp4" type="video/mp4">
+</video>
+<canvas id="particles"></canvas>
+<div class="container">
+<div class="title">Happy Birthday<br>To Hayat</div>
+<div class="subtitle">💖 كل عام وأنتِ نور هذه الحياة 💖</div>
+<div class="emoji">🎂💃🎉</div>
+<div class="album">
+<div class="card">
+<img src="https://picsum.photos/300/200?1">
+<p>ذكريات جميلة ✨</p>
+</div>
+<div class="card">
+<img src="https://picsum.photos/300/200?2">
+<p>لحظات لا تُنسى 💕</p>
+</div>
+<div class="card">
+<img src="https://picsum.photos/300/200?3">
+<p>حب أبدي ❤️</p>
+</div>
+</div>
+<div class="heart">❤️</div>
+</div>
+<script>
+// Particles effect
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+let particles=[];
+for(let i=0;i<200;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*3+1});}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{p.y+=0.7;if(p.y>canvas.height){p.y=0;}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(255,255,255,0.8)";ctx.fill();});
+requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
